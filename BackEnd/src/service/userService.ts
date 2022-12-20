@@ -10,7 +10,7 @@ export class UserService {
     }
 
     findAll = async () => {
-        return await this.userRepository.find()
+        await this.userRepository.find()
     }
     save = async (user) => {
         let query = `select *
@@ -26,15 +26,15 @@ export class UserService {
             return await this.userRepository.save(user)
         }
     }
-    login = async (data) => {
-        let login = await this.userRepository.findOne(data)
-        return login
+    login = async (username) => {
+        let query = `select * from user where username = '${username}'`
+        return (await this.userRepository.query(query))[0];
     }
+
     delete = async (id) => {
         const query = `DELETE
                        FROM user
                        WHERE id = ` + id;
         return await this.userRepository.query(query)
     }
-
 }
