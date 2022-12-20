@@ -28,10 +28,6 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar' }),
-    __metadata("design:type", String)
-], User.prototype, "rePass", void 0);
-__decorate([
     (0, typeorm_1.OneToMany)(() => blog_1.Blog, (blog) => blog.user),
     __metadata("design:type", Array)
 ], User.prototype, "blogs", void 0);

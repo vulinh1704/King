@@ -4,7 +4,6 @@ export declare class User {
     readonly id: number;
     username: string;
     password: string;
-    rePass: string;
     blogs: Blog[];
     comments: Comment[];
 }

@@ -11,8 +11,6 @@ export class User {
     public username: string;
     @Column({type: 'varchar'})
     public password: string;
-    @Column({type: 'varchar'})
-    public rePass: string;
     @OneToMany(() => Blog, (blog) => blog.user)
     public blogs: Blog[];
     @OneToMany(() => Comment, (comment) => comment.user)
