@@ -31,6 +31,7 @@ export class BlogService {
         let id = req.params.id
         await this.blogRepository.delete(id)
     }
+
 }
 
 

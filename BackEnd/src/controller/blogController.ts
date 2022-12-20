@@ -10,23 +10,23 @@ class BlogController {
 
     showAll = async (req: Request, res: Response) => {
         let blogs = await this.blogService.find()
-        return res.status(200).json(blogs)
+        return res.status(200).json(blogs);
     }
 
     createBlog = async (req: Request, res: Response) => {
         let blog = await this.blogService.create(req.body)
-        return res.status(200).json(blog)
+        return res.status(200).json(blog);
     }
 
     editBlogs = async (req: Request, res: Response) => {
         await this.blogService.update(req.params.id, req.body)
-        return res.status(200).json({message: 'ok'})
+        return res.status(200).json({message: 'ok'});
 
     }
 
     removeBlogs = async (req: Request, res: Response) => {
         let blogs = await this.blogService.delete(req, res)
-        return res.json(blogs)
+        return res.json(blogs);
     }
 
 }
