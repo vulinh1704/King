@@ -15,14 +15,6 @@ class BlogController {
             await this.blogService.update(req.params.id, req.body);
             return res.status(200).json({ message: 'ok' });
         };
-        this.findByBlog = async (req, res) => {
-            let blog = await this.blogService.findByUser(req.params.id);
-            return res.status(200).json(blog);
-        };
-        this.findByBlogStatus = async (req, res) => {
-            let blog = await this.blogService.findByStatus(req.params.id);
-            return res.status(200).json(blog);
-        };
         this.removeBlogs = async (req, res) => {
             let blogs = await this.blogService.delete(req, res);
             return res.json(blogs);

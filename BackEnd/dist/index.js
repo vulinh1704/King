@@ -12,7 +12,7 @@ data_source_1.AppDataSource.initialize().then(() => {
 });
 app.use(express_1.default.json());
 app.use('', router_1.router);
-app.listen(3000, () => {
+app.listen(8080, () => {
     console.log('Server is running !');
 });
 //# sourceMappingURL=index.js.map

@@ -9,8 +9,6 @@ blogRouter.route('/:id').put(BlogController.editBlogs)
 blogRouter.route('/user/:id').get(BlogController.findBlogByUser)
 blogRouter.route('/status/:id').get(BlogController.showStatusByUser)
 blogRouter.route('/:id').get(BlogController.showBlog)
-blogRouter.route('/user/:id').get(BlogController.findByBlog)
-blogRouter.route('/user/status/:id').get(BlogController.findByBlogStatus)
 
 
 

@@ -11,8 +11,8 @@ export class BlogService {
 
     find = async () => {
         return await this.blogRepository.find({
-            relation: {
-                category:true
+            relations: {
+                categories: true,
             }
         })
     }

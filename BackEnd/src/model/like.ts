@@ -10,5 +10,5 @@ export class Like {
     @JoinColumn()
     public user: User;
     @ManyToOne(() => Blog, (blog) => blog.likes)
-    blog: Blog
+    blog: Blog;
 }

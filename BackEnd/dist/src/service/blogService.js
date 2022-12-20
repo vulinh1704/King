@@ -7,8 +7,8 @@ class BlogService {
     constructor() {
         this.find = async () => {
             return await this.blogRepository.find({
-                relation: {
-                    category: true
+                relations: {
+                    categories: true,
                 }
             });
         };

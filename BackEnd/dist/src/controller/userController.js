@@ -10,7 +10,11 @@ class UserController {
         };
         this.register = async (req, res) => {
             let userAdd = await this.userService.save(req.body);
-            res.status(200).json(userAdd);
+            return res.status(201).json(userAdd);
+        };
+        this.login = async (req, res) => {
+            let user = await this.userService.login(req.body);
+            return res.status(200).json(user);
         };
         this.delete = async (req, res) => {
             await this.userService.delete(req.params.id);
