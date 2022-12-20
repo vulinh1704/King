@@ -15,8 +15,8 @@ export class Blog {
     public image: string;
     @Column({type: 'int'})
     public status: number; // 0 : private , 1 : public , 2 : friend
-    @Column()
-    public createTime: Date;
+    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
+    public createTime: string;
     @Column({type: 'varchar', length: 255})
     public description: string;
     @ManyToMany(() => Category)
