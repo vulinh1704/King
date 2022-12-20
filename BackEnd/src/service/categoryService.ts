@@ -14,6 +14,14 @@ export class CategoryService {
     save = async (data) => {
         return await this.categoryRepository.save(data)
     }
+    delete = async (id)=>{
+        let query = `DELETE FROM category WHERE id = ` + id
+        return await this.categoryRepository.query(query)
+    }
+    update = async (id,data)=>{
+        let query = `update category set name='${data.name}' where id=${id}`
+        return await this.categoryRepository.query(query)
+    }
 }
 
 export default new CategoryService()

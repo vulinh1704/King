@@ -19,6 +19,18 @@ class BlogController {
             let blogs = await this.blogService.delete(req, res);
             return res.json(blogs);
         };
+        this.findBlogByUser = async (req, res) => {
+            let blogs = await this.blogService.findU(req.params.id);
+            return res.json(blogs);
+        };
+        this.showStatusByUser = async (req, res) => {
+            let blogs = await this.blogService.showStatus(req.params.id);
+            return res.json(blogs);
+        };
+        this.showBlog = async (req, res) => {
+            let blogs = await this.blogService.showBlog(req.params.id);
+            return res.json(blogs);
+        };
         this.blogService = new blogService_1.BlogService();
     }
 }

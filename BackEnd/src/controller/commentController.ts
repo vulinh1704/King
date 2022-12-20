@@ -11,7 +11,6 @@ export class CommentController {
     showComment = async (req: Request, res: Response) => {
         let comment = await this.commentService.findAll()
         return res.status(200).json(comment)
-
     }
     makeComment = async (req: Request, res: Response) => {
         let comment = req.body

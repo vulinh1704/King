@@ -13,6 +13,14 @@ class CategoryController {
             await this.categoryService.save(req.body);
             return res.status(200).json(category);
         };
+        this.deleteC = async (req, res) => {
+            await this.categoryService.delete(req.params.id);
+            return res.status(200).json({ message: 'delete ok' });
+        };
+        this.updateC = async (req, res) => {
+            await this.categoryService.update(req.params.id, req.body);
+            return res.status(200).json({ message: 'update ok' });
+        };
         this.categoryService = new categoryService_1.CategoryService();
     }
 }

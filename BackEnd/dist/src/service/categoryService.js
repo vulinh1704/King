@@ -11,6 +11,14 @@ class CategoryService {
         this.save = async (data) => {
             return await this.categoryRepository.save(data);
         };
+        this.delete = async (id) => {
+            let query = `DELETE FROM category WHERE id = ` + id;
+            return await this.categoryRepository.query(query);
+        };
+        this.update = async (id, data) => {
+            let query = `update category set name='${data.name}' where id=${id}`;
+            return await this.categoryRepository.query(query);
+        };
         this.categoryRepository = data_source_1.AppDataSource.getRepository(category_1.Category);
     }
 }

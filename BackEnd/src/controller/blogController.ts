@@ -28,6 +28,18 @@ class BlogController {
         let blogs = await this.blogService.delete(req, res)
         return res.json(blogs);
     }
+    findBlogByUser = async (req:Request,res:Response)=>{
+        let blogs = await this.blogService.findU(req.params.id)
+        return res.json(blogs)
+    }
+    showStatusByUser  = async (req:Request,res:Response)=> {
+        let blogs = await this.blogService.showStatus(req.params.id)
+        return res.json(blogs)
+    }
+    showBlog = async (req:Request,res:Response)=>{
+        let blogs = await this.blogService.showBlog(req.params.id)
+        return res.json(blogs)
+    }
 
 }
 

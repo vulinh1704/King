@@ -10,7 +10,11 @@ export class BlogService {
     }
 
     find = async () => {
-        return await this.blogRepository.find()
+        return await this.blogRepository.find({
+            relation: {
+                category:true
+            }
+        })
     }
 
     create = async (blog) => {
@@ -31,7 +35,18 @@ export class BlogService {
         let id = req.params.id
         await this.blogRepository.delete(id)
     }
-
+    findU = async (id) => {
+        let query = `SELECT * FROM blog where userId = ${id}`
+        return  await this.blogRepository.query(query)
+    }
+    showStatus = async (id)=>{
+        let query = `SELECT * FROM blog where status = ${id}`
+        return await this.blogRepository.query(query)
+    }
+    showBlog = async (id)=>{
+        let query = `select * from blog where blog.id=${id}`
+        return await this.blogRepository.query(query)
+    }
 }
 
 

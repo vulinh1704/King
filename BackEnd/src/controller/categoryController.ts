@@ -17,6 +17,15 @@ export class CategoryController {
         await this.categoryService.save(req.body)
         return res.status(200).json(category)
     }
+    deleteC = async (req:Request,res:Response)=>{
+        await this.categoryService.delete(req.params.id)
+        return res.status(200).json({message: 'delete ok'})
+    }
+    updateC = async (req:Request,res:Response)=>{
+        await this.categoryService.update(req.params.id,req.body)
+        return res.status(200).json({message:'update ok'})
+    }
+
 
 }
 
