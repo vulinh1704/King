@@ -5,6 +5,8 @@ declare class BlogController {
     showAll: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     createBlog: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     editBlogs: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
+    findByBlog: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
+    findByBlogStatus: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     removeBlogs: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
 }
 declare const _default: BlogController;

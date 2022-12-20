@@ -18,6 +18,20 @@ class BlogService {
                            status      = ${blog.status},
                            description = '${blog.description}'
                        WHERE id = ${id};`;
+            console.log(await this.blogRepository.query(query));
+            return await this.blogRepository.query(query);
+        };
+        this.findByUser = async (id) => {
+            const query = `
+      select * from blog 
+      join user u on u.id = blog.userId where userId = ${id}
+      `;
+            return await this.blogRepository.query(query);
+        };
+        this.findByStatus = async (id) => {
+            const query = `
+            select * from blog where status = ${id}
+        `;
             return await this.blogRepository.query(query);
         };
         this.delete = async (req, res) => {

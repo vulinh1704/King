@@ -11,4 +11,6 @@ exports.blogRouter.route('/').get(blogController_1.default.showAll);
 exports.blogRouter.route('/').post(blogController_1.default.createBlog);
 exports.blogRouter.route('/:id').delete(blogController_1.default.removeBlogs);
 exports.blogRouter.route('/:id').put(blogController_1.default.editBlogs);
+exports.blogRouter.route('/user/:id').get(blogController_1.default.findByBlog);
+exports.blogRouter.route('/user/status/:id').get(blogController_1.default.findByBlogStatus);
 //# sourceMappingURL=blogRouter.js.map
