@@ -9,11 +9,10 @@ export class CategoryService {
     }
 
     find = async () => {
-      return   await this.categoryRepository.find()
+        return await this.categoryRepository.find()
     }
     save = async (data) => {
-        let category = await this.categoryRepository.save(data)
-        return category
+        return await this.categoryRepository.save(data)
     }
 }
 

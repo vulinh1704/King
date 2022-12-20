@@ -12,7 +12,7 @@ export class CategoryController {
         let category = await this.categoryService.find()
         return res.status(200).json(category)
     }
-    addC = async (req:Request,res:Response)=>{
+    addC = async (req: Request, res: Response) => {
         let category = req.body
         await this.categoryService.save(req.body)
         return res.status(200).json(category)

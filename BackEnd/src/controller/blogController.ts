@@ -1,32 +1,36 @@
 import {Request, Response} from "express";
-import BlogService from "../service/blogService";
-import {blogRouter} from "../routers/blogRouter";
+import {BlogService} from "../service/blogService";
 
 class BlogController {
+    private blogService: BlogService;
 
+    constructor() {
+        this.blogService = new BlogService();
+    }
 
-    showAll = async (req : Request, res : Response)=>{
-        let blogs = await BlogService.findBlogs()
+    showAll = async (req: Request, res: Response) => {
+        let blogs = await this.blogService.find()
         return res.status(200).json(blogs)
     }
 
-    createBlog = async (req : Request, res : Response) =>{
-        let blog = await BlogService.createBlog(req.body)
+    createBlog = async (req: Request, res: Response) => {
+        let blog = await this.blogService.create(req.body)
         return res.status(200).json(blog)
     }
 
-    editBlogs  = async (req : Request, res : Response) =>{
-        await BlogService.updateBlogs(req.params.id, req.body)
-        return res.status(200).json({message:'ok'})
+    editBlogs = async (req: Request, res: Response) => {
+        await this.blogService.update(req.params.id, req.body)
+        return res.status(200).json({message: 'ok'})
 
     }
 
-    removeBlogs  = async (req : Request, res : Response) => {
-         let   blogs =   await BlogService.deleteBlogs(req,res)
+    removeBlogs = async (req: Request, res: Response) => {
+        let blogs = await this.blogService.delete(req, res)
         return res.json(blogs)
     }
 
 }
+
 export default new BlogController;
 
 

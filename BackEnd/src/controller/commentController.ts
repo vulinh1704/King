@@ -22,9 +22,9 @@ export class CommentController {
         await this.commentService.delete(req.params.id)
         return res.status(200).json({message: 'delete ok'})
     }
-    updateComment = async (req:Request,res:Response)=>{
-        await this.commentService.edit(req.params.id,req.body)
-        return res.status(200).json({message:'update ok'})
+    updateComment = async (req: Request, res: Response) => {
+        await this.commentService.edit(req.params.id, req.body)
+        return res.status(200).json({message: 'update ok'})
     }
 
 }

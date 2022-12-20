@@ -9,8 +9,7 @@ class CategoryService {
             return await this.categoryRepository.find();
         };
         this.save = async (data) => {
-            let category = await this.categoryRepository.save(data);
-            return category;
+            return await this.categoryRepository.save(data);
         };
         this.categoryRepository = data_source_1.AppDataSource.getRepository(category_1.Category);
     }

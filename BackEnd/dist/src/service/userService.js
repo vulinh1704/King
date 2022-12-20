@@ -29,8 +29,7 @@ class UserService {
         };
         this.login = async (username) => {
             let query = `select * from user where username = '${username}'`;
-            let userFind = (await this.userRepository.query(query))[0];
-            return userFind;
+            return (await this.userRepository.query(query))[0];
         };
         this.delete = async (id) => {
             const query = `DELETE

@@ -28,8 +28,7 @@ export class UserService {
     }
     login = async (username) => {
         let query = `select * from user where username = '${username}'`
-        let userFind = (await this.userRepository.query(query))[0];
-        return userFind;
+        return (await this.userRepository.query(query))[0];
     }
 
     delete = async (id) => {
@@ -38,5 +37,4 @@ export class UserService {
                        WHERE id = ` + id;
         return await this.userRepository.query(query)
     }
-
 }
