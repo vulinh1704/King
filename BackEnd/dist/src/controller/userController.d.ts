@@ -4,7 +4,6 @@ export declare class UserController {
     constructor();
     getAll: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     register: (req: Request, res: Response) => Promise<void>;
-    login: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     delete: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
 }
 declare const _default: UserController;
