@@ -7,7 +7,7 @@ export declare class Blog {
     title: string;
     image: string;
     status: number;
-    createTime: Date;
+    createTime: string;
     description: string;
     categories: Category[];
     user: User;

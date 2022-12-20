@@ -7,10 +7,10 @@ const express_1 = __importDefault(require("express"));
 const data_source_1 = require("./src/data-source");
 const router_1 = require("./src/routers/router");
 const app = (0, express_1.default)();
-app.use(express_1.default.json());
 data_source_1.AppDataSource.initialize().then(() => {
     console.log('Connect Database Success!');
 });
+app.use(express_1.default.json());
 app.use('', router_1.router);
 app.listen(3000, () => {
     console.log('Server is running !');
