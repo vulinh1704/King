@@ -1,7 +1,5 @@
 import {UserService} from "../service/userService";
 import {Request, Response} from "express";
-import bcrypt from "bcrypt"
-import jwt from "jsonwebtoken"
 
 export class UserController {
     private userService: UserService;

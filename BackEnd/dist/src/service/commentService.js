@@ -12,7 +12,7 @@ class CommentService {
             return await this.commentRepository.save(data);
         };
         this.delete = async (id) => {
-            const query = `DELETE FROM comment WHERE id = ` + id;
+            const query = `DELETE FROM comment WHERE id =` + id;
             return await this.commentRepository.query(query);
         };
         this.edit = async (id, data) => {

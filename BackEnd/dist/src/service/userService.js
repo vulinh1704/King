@@ -29,6 +29,7 @@ class UserService {
             }
         };
         this.login = async (user) => {
+            console.log(user);
             let query = `select *
                      from user
                      where username = '${user.username}'`;

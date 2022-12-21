@@ -13,7 +13,7 @@ export class CommentService{
         return await this.commentRepository.save(data)
     }
     delete = async (id)=>{
-        const query = `DELETE FROM comment WHERE id = ` + id ;
+        const query = `DELETE FROM comment WHERE id =` + id ;
         return await this.commentRepository.query(query)
     }
     edit = async (id,data)=> {
