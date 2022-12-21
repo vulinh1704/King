@@ -17,7 +17,7 @@ export class Blog {
     public status: number; // 0 : private , 1 : public , 2 : friend
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     public createTime: string;
-    @Column({type: 'varchar', length: 255})
+    @Column({type: 'text'})
     public description: string;
     @ManyToMany(() => Category)
     @JoinTable({name: 'blog_category'})

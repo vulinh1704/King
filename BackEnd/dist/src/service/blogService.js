@@ -9,6 +9,10 @@ class BlogService {
             return await this.blogRepository.find({
                 relations: {
                     categories: true,
+                    user: true
+                },
+                where: {
+                    status: 1
                 }
             });
         };

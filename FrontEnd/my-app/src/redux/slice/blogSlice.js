@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {addBlog} from "../../services/blogService";
+import {addBlog, getBlogs} from "../../services/blogService";
 
 const initialState = {
     blogs: []
@@ -11,6 +11,9 @@ const blogSlice = createSlice({
     extraReducers: builder => {
         builder.addCase(addBlog.fulfilled, (state, {payload}) => {
             state.blogs.push(payload)
+        });
+        builder.addCase(getBlogs.fulfilled , (state , {payload}) => {
+            state.blogs = payload;
         })
     }
 });

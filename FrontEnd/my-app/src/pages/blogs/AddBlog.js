@@ -7,13 +7,18 @@ import {getDownloadURL, listAll, ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../config/firebase";
 import {v4} from "uuid";
 import {addBlog} from "../../services/blogService";
+import { ToastContainer, toast } from 'react-toastify';
+import {useNavigate} from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddBlog() {
+    const notify = () => toast("🦄 Tạo thành công!");
     const editorRef = useRef(null);
     const categories = useSelector(({categories}) => {
         return categories.categories;
     })
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     useEffect(() => {
         dispatch(getCategories());
     }, [])
@@ -29,18 +34,20 @@ function AddBlog() {
         const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
         uploadBytes(imageRef, imageUpload).then((snaphsot) => {
             getDownloadURL(snaphsot.ref).then((url) => {
-                const blog = {...values , image : url};
+                let userId = localStorage.getItem('userId');
+                const blog = {...values , image : url , user: {id: userId}};
                 blog.categories = [];
                 values.categories.map(category => {
                     blog.categories.push({id : category})
                 })
                 dispatch(addBlog(blog));
+
+                navigate('/home');
             })
         })
     }
     useEffect(() => {
         listAll(imageListRef).then((response) => {
-            uploadImage();
             response.items.forEach((item) => {
                 getDownloadURL(item).then(url => {
                     setImageList(prev => [...prev, url]);
@@ -50,7 +57,7 @@ function AddBlog() {
     }, [])
     return (
         <>
-            <div className="row">
+            <div className="row"  style={{marginTop: '30px'}}>
                 <div className="col-3"/>
                 <div className="col-6">
                     <h4 className="h4" style={{textAlign: "center"}}>
@@ -82,9 +89,9 @@ function AddBlog() {
                                 <label htmlFor="exampleInputPassword1">Trạng thái</label>
                                 <Field as={'select'} name={'status'} className="custom-select" id="inputGroupSelect02">
                                     <option selected>Chọn...</option>
-                                    <option value="1">Chỉ mình tôi</option>
-                                    <option value="2">Tất cả mọi người</option>
-                                    <option value="3">Bạn bè</option>
+                                    <option value="0">Chỉ mình tôi</option>
+                                    <option value="1">Tất cả mọi người</option>
+                                    <option value="2">Bạn bè</option>
                                 </Field>
                             </div>
                             <div className="form-group">
@@ -127,12 +134,13 @@ function AddBlog() {
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-info"
-                                    style={{marginLeft: "27%", width: '50%'}}>Đăng bài
+                                    style={{marginLeft: "27%", width: '50%'}} onClick={notify}>Đăng bài
                             </button>
                         </Form>
                     </Formik>
                 </div>
                 <div className="col-3"/>
+                <ToastContainer />
             </div>
         </>
     )
