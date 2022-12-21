@@ -21,6 +21,7 @@ class LikeController {
          await this.likeService.delete(req.params.id)
         return res.status(200).json({message : 'perfect'})
     }
-
 }
+
+
 export default new LikeController()
