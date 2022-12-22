@@ -5,14 +5,30 @@ const data_source_1 = require("../data-source");
 const like_1 = require("../model/like");
 class LikeService {
     constructor() {
-        this.findAll = async () => {
-            return await this.likeRepository.find();
+        this.findAll = async (idBlog) => {
+            return await this.likeRepository.find({
+                where: {
+                    blog: {
+                        id: idBlog
+                    }
+                }
+            });
         };
         this.save = async (like) => {
             return await this.likeRepository.save(like);
         };
         this.delete = async (id) => {
             return await this.likeRepository.delete(id);
+        };
+        this.findByIdUserAndIdBlog = async (data) => {
+            return await this.likeRepository.find({
+                where: {
+                    userId: data.idUser,
+                    blog: {
+                        id: data.idBlog
+                    }
+                }
+            });
         };
         this.likeRepository = data_source_1.AppDataSource.getRepository(like_1.Like);
     }

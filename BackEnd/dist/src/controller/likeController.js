@@ -4,7 +4,7 @@ const likeService_1 = require("../service/likeService");
 class LikeController {
     constructor() {
         this.getALl = async (req, res) => {
-            let like = await this.likeService.findAll();
+            let like = await this.likeService.findAll(req.params.idBlog);
             return res.status(200).json(like);
         };
         this.createLike = async (req, res) => {
@@ -14,6 +14,10 @@ class LikeController {
         this.deleteLike = async (req, res) => {
             await this.likeService.delete(req.params.id);
             return res.status(200).json({ message: 'perfect' });
+        };
+        this.findByIdUserAndIdBlog = async (req, res) => {
+            let like = await this.likeService.findByIdUserAndIdBlog(req.body);
+            return res.status(200).json(like);
         };
         this.likeService = new likeService_1.LikeService();
     }

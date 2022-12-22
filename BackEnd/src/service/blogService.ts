@@ -13,7 +13,8 @@ export class BlogService {
         return await this.blogRepository.find({
             relations: {
                 categories: true,
-                user : true
+                user : true,
+                likes: true
             },
             where: {
                 status: 1

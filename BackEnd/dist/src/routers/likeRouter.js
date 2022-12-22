@@ -8,6 +8,7 @@ const express_1 = require("express");
 const likeController_1 = __importDefault(require("../controller/likeController"));
 exports.likeRouter = (0, express_1.Router)();
 exports.likeRouter.post('', likeController_1.default.createLike);
-exports.likeRouter.get('', likeController_1.default.getALl);
+exports.likeRouter.get('/:idBlog', likeController_1.default.getALl);
 exports.likeRouter.delete('/:id', likeController_1.default.deleteLike);
+exports.likeRouter.post('/idUser/idBlog', likeController_1.default.findByIdUserAndIdBlog);
 //# sourceMappingURL=likeRouter.js.map
