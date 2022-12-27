@@ -20,7 +20,7 @@ class BlogController {
             return res.json(blogs);
         };
         this.findBlogByUser = async (req, res) => {
-            let blogs = await this.blogService.findU(req.params.id);
+            let blogs = await this.blogService.findByUser(req.params.id);
             return res.json(blogs);
         };
         this.showStatusByUser = async (req, res) => {

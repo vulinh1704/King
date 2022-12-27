@@ -29,6 +29,11 @@ export class UserController {
         await this.userService.delete(req.params.id)
         return res.status(204).json({message: 'ok'})
     }
+    getUser = async (req: Request, res: Response) => {
+        console.log(req.params.id)
+        let user = await this.userService.findUserById(req.params.id);
+        return res.status(200).json(user[0]);
+    }
 }
 
 export default new UserController()

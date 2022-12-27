@@ -1,6 +1,7 @@
 import {Blog} from "../model/blog";
 import {AppDataSource} from "../data-source";
 import {Request, Response} from "express";
+import {Like} from "../model/like";
 
 export class BlogService {
     private blogRepository: any;
@@ -13,11 +14,14 @@ export class BlogService {
         return await this.blogRepository.find({
             relations: {
                 categories: true,
-                user : true,
+                user: true,
                 likes: true
             },
             where: {
                 status: 1
+            },
+            order: {
+                id: 'desc'
             }
         })
     }
@@ -37,35 +41,60 @@ export class BlogService {
         return await this.blogRepository.query(query)
     }
 
-    findByUser = async (id) =>{
-        const query = `
-      select * from blog 
-      join user u on u.id = blog.userId where userId = ${id}
-      `
-        return await this.blogRepository.query(query)
+    findByUser = async (id) => {
+        return await this.blogRepository.find({
+            relations: {
+                categories: true,
+                user: true,
+                likes: true
+            },
+            where: {
+                user: {
+                    id: id
+                }
+            },
+            order: {
+                id: 'desc'
+            }
+        })
     }
-    findByStatus = async (id) =>{
+    findByStatus = async (id) => {
         const query = `
-            select * from blog where status = ${id}
+            select *
+            from blog
+            where status = ${id}
         `
         return await this.blogRepository.query(query)
     }
 
     delete = async (req: Request, res: Response) => {
-        let id = req.params.id
-        await this.blogRepository.delete(id)
+        let id = +req.params.id;
+        await this.blogRepository.delete({id: id})
     }
     findU = async (id) => {
-        let query = `SELECT * FROM blog where userId = ${id}`
-        return  await this.blogRepository.query(query)
-    }
-    showStatus = async (id)=>{
-        let query = `SELECT * FROM blog where status = ${id}`
+        let query = `SELECT *
+                     FROM blog
+                     where userId = ${id}`
         return await this.blogRepository.query(query)
     }
-    showBlog = async (id)=>{
-        let query = `select * from blog where blog.id=${id}`
+    showStatus = async (id) => {
+        let query = `SELECT *
+                     FROM blog
+                     where status = ${id}`
         return await this.blogRepository.query(query)
+    }
+    showBlog = async (id) => {
+        // let query = `select * from blog where blog.id=${id}`
+        return await this.blogRepository.find({
+            relations: {
+                categories: true,
+                user: true,
+                likes: true
+            },
+            where: {
+                id: id
+            }
+        })
     }
 }
 

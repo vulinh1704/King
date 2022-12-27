@@ -47,7 +47,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Blog.prototype, "categories", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_1.User, (user) => user.blogs),
+    (0, typeorm_1.ManyToOne)(() => user_1.User, (user) => user.blogs, { onDelete: "CASCADE" }),
     __metadata("design:type", user_1.User)
 ], Blog.prototype, "user", void 0);
 __decorate([
@@ -55,7 +55,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Blog.prototype, "likes", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => comment_1.Comment, (comment) => comment.blog),
+    (0, typeorm_1.OneToMany)(() => comment_1.Comment, (comment) => comment.blog, { onDelete: "CASCADE" }),
     __metadata("design:type", Array)
 ], Blog.prototype, "comments", void 0);
 Blog = __decorate([

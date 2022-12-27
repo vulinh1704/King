@@ -14,6 +14,9 @@ class BlogService {
                 },
                 where: {
                     status: 1
+                },
+                order: {
+                    id: 'desc'
                 }
             });
         };
@@ -31,33 +34,57 @@ class BlogService {
             return await this.blogRepository.query(query);
         };
         this.findByUser = async (id) => {
-            const query = `
-      select * from blog 
-      join user u on u.id = blog.userId where userId = ${id}
-      `;
-            return await this.blogRepository.query(query);
+            return await this.blogRepository.find({
+                relations: {
+                    categories: true,
+                    user: true,
+                    likes: true
+                },
+                where: {
+                    user: {
+                        id: id
+                    }
+                },
+                order: {
+                    id: 'desc'
+                }
+            });
         };
         this.findByStatus = async (id) => {
             const query = `
-            select * from blog where status = ${id}
+            select *
+            from blog
+            where status = ${id}
         `;
             return await this.blogRepository.query(query);
         };
         this.delete = async (req, res) => {
-            let id = req.params.id;
-            await this.blogRepository.delete(id);
+            let id = +req.params.id;
+            await this.blogRepository.delete({ id: id });
         };
         this.findU = async (id) => {
-            let query = `SELECT * FROM blog where userId = ${id}`;
+            let query = `SELECT *
+                     FROM blog
+                     where userId = ${id}`;
             return await this.blogRepository.query(query);
         };
         this.showStatus = async (id) => {
-            let query = `SELECT * FROM blog where status = ${id}`;
+            let query = `SELECT *
+                     FROM blog
+                     where status = ${id}`;
             return await this.blogRepository.query(query);
         };
         this.showBlog = async (id) => {
-            let query = `select * from blog where blog.id=${id}`;
-            return await this.blogRepository.query(query);
+            return await this.blogRepository.find({
+                relations: {
+                    categories: true,
+                    user: true,
+                    likes: true
+                },
+                where: {
+                    id: id
+                }
+            });
         };
         this.blogRepository = data_source_1.AppDataSource.getRepository(blog_1.Blog);
     }

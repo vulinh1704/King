@@ -20,6 +20,11 @@ class UserController {
             await this.userService.delete(req.params.id);
             return res.status(204).json({ message: 'ok' });
         };
+        this.getUser = async (req, res) => {
+            console.log(req.params.id);
+            let user = await this.userService.findUserById(req.params.id);
+            return res.status(200).json(user[0]);
+        };
         this.userService = new userService_1.UserService();
     }
 }

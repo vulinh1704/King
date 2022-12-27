@@ -30,6 +30,10 @@ class LikeService {
                 }
             });
         };
+        this.findLikesByIdBlog = async (id) => {
+            let query = 'select u.username from `like` l join user u on u.id = l.userId where l.blogId =' + id;
+            return await this.likeRepository.query(query);
+        };
         this.likeRepository = data_source_1.AppDataSource.getRepository(like_1.Like);
     }
 }

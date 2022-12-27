@@ -16,3 +16,25 @@ export const getBlogs = createAsyncThunk(
         return response.data;
     }
 )
+export const getBlog = createAsyncThunk(
+    'blogs/getOne',
+    async (id) => {
+        const response = await axios.get('http://localhost:8080/blogs/'+ id)
+        return response.data;
+    }
+)
+export const getBlogByUser = createAsyncThunk(
+    'blogs/getByUser',
+    async (idUser) => {
+        const response = await axios.get('http://localhost:8080/blogs/user/'+ idUser)
+        return response.data;
+    }
+)
+
+export const deleteBlog = createAsyncThunk(
+    'blogs/delete',
+    async (id) => {
+        const response = await axios.delete('http://localhost:8080/blogs/'+ id)
+        return id;
+    }
+)

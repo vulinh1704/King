@@ -35,4 +35,8 @@ export class LikeService {
             }
         });
     }
+    findLikesByIdBlog = async (id) => {
+        let query = 'select u.username from `like` l join user u on u.id = l.userId where l.blogId =' + id;
+        return await this.likeRepository.query(query);
+    }
 }

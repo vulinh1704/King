@@ -22,10 +22,10 @@ export class Blog {
     @ManyToMany(() => Category)
     @JoinTable({name: 'blog_category'})
     public categories: Category[];
-    @ManyToOne(() => User, (user) => user.blogs)
+    @ManyToOne(() => User, (user) => user.blogs,{ onDelete: "CASCADE"})
     public user: User;
     @OneToMany(() => Like, (like) => like.blog)
     public likes: Like[];
-    @OneToMany(() => Comment, (comment) => comment.blog)
+    @OneToMany(() => Comment, (comment) => comment.blog, { onDelete: "CASCADE"})
     public comments: Comment[];
 }

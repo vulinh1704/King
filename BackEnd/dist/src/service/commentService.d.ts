@@ -1,7 +1,7 @@
 export declare class CommentService {
     private commentRepository;
     constructor();
-    findAll: () => Promise<any>;
+    findAll: (idBlog: any) => Promise<any>;
     saveAll: (data: any) => Promise<any>;
     delete: (id: any) => Promise<any>;
     edit: (id: any, data: any) => Promise<any>;

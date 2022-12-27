@@ -1,4 +1,4 @@
-    import {CommentService} from "../service/commentService";
+import {CommentService} from "../service/commentService";
 import {Request, Response} from "express";
 
 export class CommentController {
@@ -9,7 +9,8 @@ export class CommentController {
     }
 
     showComment = async (req: Request, res: Response) => {
-        let comment = await this.commentService.findAll()
+        console.log(req.params.idBlog)
+        let comment = await this.commentService.findAll(req.params.idBlog)
         return res.status(200).json(comment)
     }
     makeComment = async (req: Request, res: Response) => {

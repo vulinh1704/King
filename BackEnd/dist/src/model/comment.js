@@ -31,6 +31,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => user_1.User, (user) => user.comments),
     __metadata("design:type", user_1.User)
 ], Comment.prototype, "user", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: -1 }),
+    __metadata("design:type", Number)
+], Comment.prototype, "externalCommentId", void 0);
 Comment = __decorate([
     (0, typeorm_1.Entity)()
 ], Comment);

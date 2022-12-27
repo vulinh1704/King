@@ -65,4 +65,12 @@ export class UserService {
                        WHERE id = ` + id;
         return await this.userRepository.query(query)
     }
+
+    findUserById = async (id) => {
+        return await this.userRepository.find({
+            where: {
+                id: id
+            }
+        })
+    }
 }

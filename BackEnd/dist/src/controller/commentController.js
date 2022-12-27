@@ -5,7 +5,8 @@ const commentService_1 = require("../service/commentService");
 class CommentController {
     constructor() {
         this.showComment = async (req, res) => {
-            let comment = await this.commentService.findAll();
+            console.log(req.params.idBlog);
+            let comment = await this.commentService.findAll(req.params.idBlog);
             return res.status(200).json(comment);
         };
         this.makeComment = async (req, res) => {

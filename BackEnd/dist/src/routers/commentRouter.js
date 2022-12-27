@@ -7,7 +7,7 @@ exports.commentRouter = void 0;
 const express_1 = require("express");
 const commentController_1 = __importDefault(require("../controller/commentController"));
 exports.commentRouter = (0, express_1.Router)();
-exports.commentRouter.get('/', commentController_1.default.showComment);
+exports.commentRouter.get('/:idBlog', commentController_1.default.showComment);
 exports.commentRouter.post('/', commentController_1.default.makeComment);
 exports.commentRouter.delete('/:id', commentController_1.default.deleteComment);
 exports.commentRouter.put('/:id', commentController_1.default.updateComment);

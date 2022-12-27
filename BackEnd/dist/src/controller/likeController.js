@@ -19,6 +19,10 @@ class LikeController {
             let like = await this.likeService.findByIdUserAndIdBlog(req.body);
             return res.status(200).json(like);
         };
+        this.getLikesByIdBlog = async (req, res) => {
+            let likes = await this.likeService.findLikesByIdBlog(req.params.idBlog);
+            return res.status(200).json(likes);
+        };
         this.likeService = new likeService_1.LikeService();
     }
 }

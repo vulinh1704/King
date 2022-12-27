@@ -28,6 +28,10 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ default: 'https://haycafe.vn/wp-content/uploads/2022/02/Gai-xinh-cute-anh-dai-dien-dep-cho-nu.jpg' }),
+    __metadata("design:type", String)
+], User.prototype, "avatar", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => blog_1.Blog, (blog) => blog.user),
     __metadata("design:type", Array)
 ], User.prototype, "blogs", void 0);

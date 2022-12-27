@@ -11,6 +11,8 @@ export class User {
     public username: string;
     @Column({type: 'varchar'})
     public password: string;
+    @Column({default: 'https://haycafe.vn/wp-content/uploads/2022/02/Gai-xinh-cute-anh-dai-dien-dep-cho-nu.jpg'})
+    public avatar : string;
     @OneToMany(() => Blog, (blog) => blog.user)
     public blogs: Blog[];
     @OneToMany(() => Comment, (comment) => comment.user)

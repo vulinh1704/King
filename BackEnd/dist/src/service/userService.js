@@ -67,6 +67,13 @@ class UserService {
                        WHERE id = ` + id;
             return await this.userRepository.query(query);
         };
+        this.findUserById = async (id) => {
+            return await this.userRepository.find({
+                where: {
+                    id: id
+                }
+            });
+        };
         this.userRepository = data_source_1.AppDataSource.getRepository(user_1.User);
     }
 }

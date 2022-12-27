@@ -33,16 +33,15 @@ function AddBlog() {
         }
         const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
         uploadBytes(imageRef, imageUpload).then((snaphsot) => {
-            getDownloadURL(snaphsot.ref).then((url) => {
+            getDownloadURL(snaphsot.ref).then(async (url) => {
                 let userId = localStorage.getItem('userId');
                 const blog = {...values , image : url , user: {id: userId}};
                 blog.categories = [];
                 values.categories.map(category => {
                     blog.categories.push({id : category})
                 })
-                dispatch(addBlog(blog));
-
-                navigate('/home');
+                await dispatch(addBlog(blog));
+                await navigate('/home');
             })
         })
     }
@@ -120,7 +119,6 @@ function AddBlog() {
                                 </div>
                                 <div role="group" aria-labelledby="checkbox-group">
                                     {
-
                                         categories.map(category => (
                                             <div className="form-check form-check-inline">
                                                 <Field className="form-check-input" type="checkbox" name='categories'
@@ -129,7 +127,6 @@ function AddBlog() {
                                                        htmlFor="inlineCheckbox1">{category.name}</label>
                                             </div>
                                         ))
-
                                     }
                                 </div>
                             </div>

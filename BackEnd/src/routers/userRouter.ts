@@ -3,5 +3,6 @@ import UserController from "../controller/userController";
 
 export const userRouter = Router();
 userRouter.post('/register', UserController.register)
-userRouter.get('/', UserController.getAll)
+userRouter.post('/login', UserController.login)
+userRouter.get('/:id', UserController.getUser)
 userRouter.delete('/:id', UserController.delete)

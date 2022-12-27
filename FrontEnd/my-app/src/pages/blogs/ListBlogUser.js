@@ -1,19 +1,19 @@
 import {useDispatch, useSelector} from "react-redux";
+import {deleteBlog, getBlogByUser, getBlogs} from "../../services/blogService";
 import {useEffect} from "react";
-import {getBlogs} from "../../services/blogService";
-import LikeBlog from "./LikeBlog";
 import {Link} from "react-router-dom";
-import {uploadBytes} from "firebase/storage";
+import LikeBlog from "./LikeBlog";
 
-function ListBlog() {
+export function ListBlogUser() {
     const blogs = useSelector(({blogs}) => {
-        return blogs.blogs;
+        console.log(blogs.blogsUser)
+        return blogs.blogsUser;
     });
+    const id = localStorage.getItem('userId');
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getBlogs());
+        dispatch(getBlogByUser(id));
     }, [])
-
     return (
         <>  {
             blogs.length !== 0 && blogs.map(blog => (
@@ -27,7 +27,24 @@ function ListBlog() {
                             </div>
                             <div className="col-10">
                                 <div className="row">
-                                    <p>{blog.user.username}</p>
+                                    <div className="col-2">
+                                        <p style={{marginLeft: "-12px"}}>{blog.user.username}</p>
+                                    </div>
+                                    <div className="col-10">
+                                        <button style={{
+                                            marginLeft: "90%",
+                                            backgroundColor: 'white',
+                                            border: "none",
+                                            marginTop: "15px"
+                                        }} data-toggle="dropdown" aria-expanded="false"><i
+                                            className="fa-solid fa-ellipsis"/></button>
+                                        <div className="dropdown-menu" style={{marginLeft: "15px", textAlign: "center"}}>
+                                            <button className="dropdown-item" style={{color: '#ee787c'}}><i
+                                                className="fa-solid fa-trash"/></button>
+                                            <button className="dropdown-item" style={{color: '#86eaa5'}}><i
+                                                className="fa-solid fa-user-pen"/></button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="row" style={{marginTop: "-10px"}}>
                                     <p style={{fontSize: "13px"}}>{new Date(blog.createTime).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</p>
@@ -44,7 +61,7 @@ function ListBlog() {
                         <div className="row">
                             <div className="col-12" style={{textAlign: "center"}}>
                                 <Link to={`/home/${blog.id}`}><img src={blog.image}
-                                     alt="" width={"660px"} height={"495px"}/></Link>
+                                                                   alt="" width={"660px"} height={"495px"}/></Link>
                             </div>
                         </div>
                         <div className="row" style={{textAlign: 'center', marginTop: '15px'}}>
@@ -65,5 +82,3 @@ function ListBlog() {
         </>
     )
 }
-
-export default ListBlog;

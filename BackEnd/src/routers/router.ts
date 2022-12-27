@@ -8,6 +8,6 @@ import {likeRouter} from "./likeRouter";
 export const router = Router();
 router.use('/users', userRouter);
 router.use('/categories', categoryRouter)
-router.use('/comment', commentRouter)
+router.use('/comments', commentRouter)
 router.use('/blogs', blogRouter)
 router.use('/likes', likeRouter)

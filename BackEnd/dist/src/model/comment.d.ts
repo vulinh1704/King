@@ -5,4 +5,5 @@ export declare class Comment {
     content: string;
     blog: Blog;
     user: User;
+    externalCommentId: number;
 }

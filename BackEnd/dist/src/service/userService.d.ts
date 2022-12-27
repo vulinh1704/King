@@ -13,4 +13,5 @@ export declare class UserService {
         message?: undefined;
     }>;
     delete: (id: any) => Promise<any>;
+    findUserById: (id: any) => Promise<any>;
 }

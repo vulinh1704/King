@@ -5,18 +5,31 @@ const data_source_1 = require("../data-source");
 const comment_1 = require("../model/comment");
 class CommentService {
     constructor() {
-        this.findAll = async () => {
-            return await this.commentRepository.find();
+        this.findAll = async (idBlog) => {
+            return await this.commentRepository.find({
+                relations: {
+                    blog: true,
+                    user: true
+                }, where: {
+                    blog: {
+                        id: idBlog
+                    }
+                }
+            });
         };
         this.saveAll = async (data) => {
             return await this.commentRepository.save(data);
         };
         this.delete = async (id) => {
-            const query = `DELETE FROM comment WHERE id = ` + id;
+            const query = `DELETE
+                       FROM comment
+                       WHERE id = ` + id;
             return await this.commentRepository.query(query);
         };
         this.edit = async (id, data) => {
-            const query = `UPDATE comment SET content = '${data.content}' WHERE id = ${id}`;
+            const query = `UPDATE comment
+                       SET content = '${data.content}'
+                       WHERE id = ${id}`;
             return await this.commentRepository.query(query);
         };
         this.commentRepository = data_source_1.AppDataSource.getRepository(comment_1.Comment);

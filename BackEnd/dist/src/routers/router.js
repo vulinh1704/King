@@ -10,7 +10,7 @@ const likeRouter_1 = require("./likeRouter");
 exports.router = (0, express_1.Router)();
 exports.router.use('/users', userRouter_1.userRouter);
 exports.router.use('/categories', categoryRouter_1.categoryRouter);
-exports.router.use('/comment', commentRouter_1.commentRouter);
+exports.router.use('/comments', commentRouter_1.commentRouter);
 exports.router.use('/blogs', blogRouter_1.blogRouter);
 exports.router.use('/likes', likeRouter_1.likeRouter);
 //# sourceMappingURL=router.js.map
